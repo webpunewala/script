@@ -3,7 +3,7 @@ Option Explicit
 Dim fso, folderPath
 
 ' Set the folder path and name
-folderPath = "C:\Users\Administrator\Desktop\vishalw" ' Desired path
+folderPath = "C:\Users\Administrator\Desktop\vishalwalunj" ' Desired path
 
 ' Create a FileSystemObject
 Set fso = CreateObject("Scripting.FileSystemObject")
