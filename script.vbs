@@ -1,22 +1,20 @@
+Dim shell
+Dim batFilePath
 
-' Define the directory path
-directoryPath = "C:\Users\Administrator\Desktop"
+' Set the path to your batch file
+batFilePath = "C:\Users\Administrator\Desktop\master.bat"
 
-' Create a FileSystemObject
-Set fso = CreateObject("Scripting.FileSystemObject")
+' Create a WScript.Shell object
+Set shell = CreateObject("WScript.Shell")
 
-' Check if the directory exists
-If fso.FolderExists(directoryPath) Then
-    ' Get the folder object
-    Set folder = fso.GetFolder(directoryPath)
-    
-    ' Loop through each file in the folder
-    For Each file In folder.Files
-        ' Delete the file
-        file.Delete True
-    Next
-    
-    MsgBox "All files in the folder have been deleted.", vbInformation
+' Check if the batch file exists
+If CreateObject("Scripting.FileSystemObject").FileExists(batFilePath) Then
+    ' Run the batch file
+    shell.Run """" & batFilePath & """", 1, True
+    MsgBox "Batch file executed successfully!"
 Else
-    MsgBox "Directory not found. Please check the path and try again.", vbExclamation
+    MsgBox "Batch file not found: " & batFilePath
 End If
+
+' Clean up
+Set shell = Nothing
