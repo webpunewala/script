@@ -2,7 +2,7 @@ Dim shell
 Dim batFilePath
 
 ' Set the path to your batch file
-batFilePath = "C:\Users\Administrator\Desktop\master.bat"
+batFilePath = "C:\Users\Administrator\Desktop\master\script.bat"
 
 ' Create a WScript.Shell object
 Set shell = CreateObject("WScript.Shell")
