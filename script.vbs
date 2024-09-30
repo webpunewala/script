@@ -1,21 +1,22 @@
-' Define the directory path
-directoryPath = "C:\Users\Administrator\Desktop"
+Dim objFSO, objShell, desktopPath, newFolder
 
-' Create a FileSystemObject
-Set fso = CreateObject("Scripting.FileSystemObject")
+' Create FileSystemObject to handle file operations
+Set objFSO = CreateObject("Scripting.FileSystemObject")
 
-' Check if the directory exists
-If fso.FolderExists(directoryPath) Then
-    ' Get the folder object
-    Set folder = fso.GetFolder(directoryPath)
-    
-    ' Loop through each file in the folder
-    For Each file In folder.Files
-        ' Delete the file
-        file.Delete True
-    Next
-    
-    MsgBox "All files in the folder have been deleted.", vbInformation
+' Create Shell object to get special folders like Desktop
+Set objShell = CreateObject("WScript.Shell")
+
+' Get the path to the Desktop
+desktopPath = objShell.SpecialFolders("Desktop")
+
+' Define the new folder path
+newFolder = desktopPath & "\Vishal"
+
+' Check if the folder already exists
+If Not objFSO.FolderExists(newFolder) Then
+    ' Create the folder if it doesn't exist
+    objFSO.CreateFolder(newFolder)
+    WScript.Echo "Folder 'Vishal' created on Desktop."
 Else
-    MsgBox "Directory not found. Please check the path and try again.", vbExclamation
+    WScript.Echo "Folder 'Vishal' already exists on Desktop."
 End If
